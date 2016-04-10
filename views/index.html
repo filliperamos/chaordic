@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Produto</h2>
+                <hr>
+                <div id="productsList">
+                    <div data-bind="with: products">
+                        <div data-bind="with: reference">
+                            <div data-bind="with: item" class="row">
+                                <div class="col-md-12">
+                                    <h3 data-bind="text: name"></h3></div>
+                                <div class="col-md-6">
+                                    <div class="thumbnail"><img data-bind="attr: { 'src': 'http://' + imageName }" class="img-responsive"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p data-bind="text: 'De: ' + oldPrice" class="oldPrice"></p><strong data-bind="text: 'Por: ' + price" class="newPrice"></strong>
+                                    <p data-bind="html: productInfo.paymentConditions"></p><a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank'}" class="btn btn-primary">Detalhes</a></div>
+                            </div>
+                        </div>
+                        <h2>Recomendados para você:</h2>
+                        <hr>
+                        <div id="myCarousel" style="display: none;" data-bind="visible: true" class="carousel slide">
+                            <nav>
+                                <ul class="control-box pager">
+                                    <li><a data-slide="prev" href="#myCarousel" class="pull-left"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                                    <li><a data-slide="next" href="#myCarousel" class="pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                                </ul>
+                            </nav>
+                            <div data-bind="foreach: recommendation" class="carousel-inner">
+                                <!-- ko if: $index() % 4 === 0 -->
+                                <div data-bind="css: { active: $index() === 0}" class="item">
+                                    <ul class="thumbnails">
+                                        <li data-bind="with: $parent.recommendation[$index()]" class="col-sm-3">
+                                            <div class="fff">
+                                                <div class="thumbnail">
+                                                    <a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><img data-bind="attr: { 'src': 'http://'+imageName }"></a>
+                                                </div><span class="caption"><a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><h4 data-bind="text: name"></h4><!-- ko if: oldPrice != null --><p data-bind="text: 'De: ' + oldPrice" class="oldPrice"></p><!-- /ko --><strong data-bind="text: 'Por: ' + price" class="newPrice"></strong><p data-bind="html: productInfo.paymentConditions"></p></a></span></div>
+                                        </li>
+                                        <li data-bind="with: $parent.recommendation[$index()+1]" class="col-sm-3">
+                                            <div class="fff">
+                                                <div class="thumbnail">
+                                                    <a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><img data-bind="attr: { 'src': 'http://'+imageName }"></a>
+                                                </div><span class="caption"><a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><h4 data-bind="text: name"></h4><!-- ko if: oldPrice != null --><p data-bind="text: 'De: ' + oldPrice" class="oldPrice"></p><!-- /ko --><strong data-bind="text: 'Por: ' + price" class="newPrice"></strong><p data-bind="html: productInfo.paymentConditions"></p></a></span></div>
+                                        </li>
+                                        <li data-bind="with: $parent.recommendation[$index()+2]" class="col-sm-3">
+                                            <div class="fff">
+                                                <div class="thumbnail">
+                                                    <a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><img data-bind="attr: { 'src': 'http://'+imageName }"></a>
+                                                </div><span class="caption"><a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><h4 data-bind="text: name"></h4><!-- ko if: oldPrice != null --><p data-bind="text: 'De: ' + oldPrice" class="oldPrice"></p><!-- /ko --><strong data-bind="text: 'Por: ' + price" class="newPrice"></strong><p data-bind="html: productInfo.paymentConditions"></p></a></span></div>
+                                        </li>
+                                        <li data-bind="with: $parent.recommendation[$index()+3]" class="col-sm-3">
+                                            <div class="fff">
+                                                <div class="thumbnail">
+                                                    <a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><img data-bind="attr: { 'src': 'http://'+imageName }"></a>
+                                                </div><span class="caption"><a data-bind="attr: { href: 'http://'+detailUrl, target: '_blank' }"><h4 data-bind="text: name"></h4><!-- ko if: oldPrice != null --><p data-bind="text: 'De: ' + oldPrice" class="oldPrice"></p><!-- /ko --><strong data-bind="text: 'Por: ' + price" class="newPrice"></strong><p data-bind="html: productInfo.paymentConditions"></p></a></span></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<link href="../public/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="../public/css/style.css" rel="stylesheet" type="text/css">
+<script src="../public/js/jquery-2.2.3.min.js"></script>
+<script src="../public/js/bootstrap.min.js"></script>
+<script src="../public/js/knockout-3.3.0.js"></script>
+<script src="../public/js/products.js"></script>
+
+</html>
